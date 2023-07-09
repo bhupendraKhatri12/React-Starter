@@ -196,12 +196,12 @@ export default LoginForm;
 React functional components have a simplified lifecycle compared to class components. The following diagram illustrates the lifecycle events in a React functional component:
 
 
-```
+```mermaid
 graph TD
     A[Mounting] --> B[Rendering]
     B --> C[useEffect]
     C --> D[Unmounting]
-```
+;
 
 ### Mounting: Occurs when the component is created and inserted into the DOM.
 #
@@ -241,3 +241,7 @@ export default DataFetcher;
 
 Remember to refer to the React documentation and explore additional hooks and their use cases for more complex scenarios.
 
+```markdown
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
