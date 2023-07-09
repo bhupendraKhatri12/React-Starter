@@ -202,7 +202,7 @@ graph TD
     B --> C[useEffect]
     C --> D[Unmounting]
 ;
-
+```
 ### Mounting: Occurs when the component is created and inserted into the DOM.
 #
 ### Rendering: The component renders its JSX and updates when its state or props change.
