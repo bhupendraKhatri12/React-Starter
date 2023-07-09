@@ -1,24 +1,67 @@
-import { useState } from 'react';
-import logo from './logo.svg';
-import Counter from './counter';
-import { userData } from './Card/userDate';
-import Card from './Card/card';
+import React, { useState, useEffect } from 'react';
+import './Toast.css';
 
-function App() {
-   const [first, setfirst] = useState(0);
+const Toast = ({ message, onClose }) => {
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsClosing(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleTransitionEnd = () => {
+    if (isClosing) {
+      onClose();
+    }
+  };
 
   return (
-    <div className="App">
-
-{userData.map((item,index)=>(
-  <Card name={item.name} age={item.age} address={item.address} />
-)
-
-)
-}
-
+    <div
+      className={`toast ${isClosing ? 'closing' : ''}`}
+      onTransitionEnd={handleTransitionEnd}
+    >
+      <div className="toast-message">{message}</div>
     </div>
   );
-}
+};
+
+const ToastContainer = () => {
+  const [toasts, setToasts] = useState([]);
+  const [idCounter, setIdCounter] = useState(0);
+
+  const addToast = (message) => {
+    const newToast = { id: idCounter, message };
+    setToasts((prevToasts) => [...prevToasts, newToast]);
+    setIdCounter((prevId) => prevId + 1);
+  };
+
+  const removeToast = (id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  };
+
+  return (
+    <div className="toast-container">
+      <button onClick={() => addToast('Toast Message')}>Show Toast</button>
+      {toasts.map((toast) => (
+        <Toast
+          key={toast.id}
+          message={toast.message}
+          onClose={() => removeToast(toast.id)}
+        />
+      ))}
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <ToastContainer />
+    </div>
+  );
+};
 
 export default App;

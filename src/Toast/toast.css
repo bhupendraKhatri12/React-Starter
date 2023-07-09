@@ -1,0 +1,42 @@
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+  
+  .toast {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .toast-message {
+    font-size: 14px;
+  }
+  
+  /* Additional styles for animation */
+  .toast-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  
+  .toast-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .toast-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .toast-exit-active {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 300ms, transform 300ms;
+  }
+  

@@ -4,17 +4,6 @@ const Card =(data)=>{
 
    const [datas, setData] = useState([]);
 
-   useEffect(() => {;;
-      // Fetch data from an API
-      fetch('https://api.example.com/data')
-        .then(response => response.json())
-        .then(data => setData(data));
-  
-      // Clean up the effect
-      return () => {
-        // Perform any necessary cleanup here
-      };
-    }, []);
 
    return(
     <div className='card'>
